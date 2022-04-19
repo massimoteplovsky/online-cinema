@@ -1,7 +1,7 @@
-const colors = require('tailwindcss/colors')
-const plugin = require('tailwindcss/plugin')
+const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 
-const primary = '#E30B13'
+const primary = '#E30B13';
 
 module.exports = {
 	content: [
@@ -76,8 +76,8 @@ module.exports = {
 		},
 	},
 	plugins: [
-		require('@tailwindcss/forms'),
-		require('@tailwindcss/aspect-ratio'),
+		// require('@tailwindcss/forms'),
+		// require('@tailwindcss/aspect-ratio'),
 		plugin(({ addComponents, theme, addUtilities }) => {
 			addComponents({
 				'.btn-primary': {
@@ -127,7 +127,7 @@ module.exports = {
 						objectFit: 'cover',
 						pointerEvents: 'none',
 					},
-				})
+				});
 		}),
 	],
-}
+};
