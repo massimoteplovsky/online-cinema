@@ -1,14 +1,22 @@
 import { FC } from 'react';
 
-import Layout from '@/components/layout/layout';
+import Heading from '@/components/ui/heading/heading';
+
+import Meta from '@/utils/meta/meta';
 
 import { IHome } from './home.interface';
 
 const Home: FC<IHome> = () => {
 	return (
-		<Layout>
-			<h1>Home</h1>
-		</Layout>
+		<Meta
+			title="Watch movies online"
+			description="Watch movies online or stream right to your browser"
+		>
+			<Heading
+				title="Watch video online"
+				className="text-gray-500 mb-8 text-xl"
+			/>
+		</Meta>
 	);
 };
 
