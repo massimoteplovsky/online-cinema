@@ -3,6 +3,7 @@ const nextConfig = {
 	poweredByHeader: false,
 	optimizeFonts: false,
 	env: {
+		API_URL: process.env.REACT_API_URL,
 		APP_URL: process.env.REACT_APP_URL,
 		APP_ENV: process.env.REACT_APP_ENV,
 	},
@@ -16,8 +17,8 @@ const nextConfig = {
 				source: '/uploads/:path*',
 				destination: `http://localhost:4200/uploads/:path*`,
 			},
-		]
+		];
 	},
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
