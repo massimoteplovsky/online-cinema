@@ -10,4 +10,7 @@ export const MovieService = {
 			params: searchTerm ? { searchTerm } : {},
 		});
 	},
+	async getPopularMovies() {
+		return await axiosInterceptor.get<IMovie[]>(getMoviesUrl('most-popular'));
+	},
 };

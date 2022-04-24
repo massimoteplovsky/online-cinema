@@ -13,6 +13,8 @@ const MenuItem: FC<{ item: IMenuItem }> = ({ item }) => {
 	const { title, icon, link } = item;
 	const { asPath } = useRouter();
 
+	console.log(asPath, link);
+
 	return (
 		<li className={cn({ [s.activeItem]: asPath === link })}>
 			<Link href={link}>
