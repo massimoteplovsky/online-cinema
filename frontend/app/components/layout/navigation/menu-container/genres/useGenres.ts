@@ -1,7 +1,8 @@
-import { getGenresUrl } from 'config/api.config';
 import { useQuery } from 'react-query';
 
 import { GenreService } from '@/services/genre.service';
+
+import { getGenresUrl } from '@/configs/api.config';
 
 import { IMenuItem } from '../menu.interface';
 

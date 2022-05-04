@@ -1,15 +1,20 @@
-import { makeTitle, sitename } from 'config/seo.config';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import logoImage from '@/assets/images/logo.svg';
+
+import { makeTitle, sitename } from '@/configs/seo.config';
 
 import { onlyText } from '../helpers';
 
 import { ISeo } from './meta.interface';
 
-const Meta: FC<ISeo> = ({ title, description, image, children }) => {
+interface IComponentProps extends ISeo {
+	children: ReactNode;
+}
+
+const Meta: FC<IComponentProps> = ({ title, description, image, children }) => {
 	const { asPath } = useRouter();
 	const currentUrl = `${process.env.APP_URL}${asPath}`;
 

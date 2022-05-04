@@ -2,7 +2,7 @@ import { axiosInterceptor } from 'api/interceptors';
 
 import { IMovie } from '@/shared/types/movie.types';
 
-import { getMoviesUrl } from '../config/api.config';
+import { getMoviesUrl } from '@/configs/api.config';
 
 export const MovieService = {
 	async getMovies(searchTerm?: string) {

@@ -1,9 +1,10 @@
-import { getMoviesPath } from 'config/url.config';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import { IMovie } from '@/shared/types/movie.types';
+
+import { getMoviesPath } from '@/configs/url.config';
 
 import s from './search-list.module.scss';
 
