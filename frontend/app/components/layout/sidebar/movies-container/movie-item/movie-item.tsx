@@ -1,4 +1,3 @@
-import { getGenresPath, getMoviesPath } from 'config/url.config';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
@@ -6,6 +5,8 @@ import React, { FC } from 'react';
 import MaterialIcon from '@/components/ui/material-icon';
 
 import { IMovie } from '@/shared/types/movie.types';
+
+import { getGenresPath, getMoviesPath } from '@/configs/url.config';
 
 import s from './movie-item.module.scss';
 

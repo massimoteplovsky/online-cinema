@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { API_URL } from 'config/api.config';
+
+import { API_URL } from '@/configs/api.config';
 
 export const axiosInterceptor = axios.create({
 	baseURL: API_URL,
