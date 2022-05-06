@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useQuery } from 'react-query';
 
-import { MovieService } from '@/services/movie.search';
+import { MovieService } from '@/services/movie.service';
 
 import MovieList from '../movie-list/movie-list';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useQuery } from 'react-query';
 
-import { MovieService } from '@/services/movie.search';
+import { MovieService } from '@/services/movie.service';
 
 import FavoriteMovies from './favorite-movies.tsx/favorite-movies';
 import s from './movies-container.module.scss';

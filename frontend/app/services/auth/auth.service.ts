@@ -1,4 +1,4 @@
-import { axiosInterceptor } from 'api/interceptors';
+import { axiosClassic } from 'api/interceptors';
 import Cookies from 'js-cookie';
 
 import {
@@ -14,7 +14,7 @@ import { removeTokens, setTokens } from './auth-helpers';
 
 export const AuthService = {
 	async registerUser(userData: { email: string; password: string }) {
-		const { data } = await axiosInterceptor.post<IAuthResponse>(
+		const { data } = await axiosClassic.post<IAuthResponse>(
 			getAuthUrl('register'),
 			userData
 		);
@@ -30,7 +30,7 @@ export const AuthService = {
 		return data;
 	},
 	async loginUser(userData: { email: string; password: string }) {
-		const { data } = await axiosInterceptor.post<IAuthResponse>(
+		const { data } = await axiosClassic.post<IAuthResponse>(
 			getAuthUrl('login'),
 			userData
 		);
@@ -47,7 +47,7 @@ export const AuthService = {
 	},
 	async getNewTokens() {
 		const refreshToken = Cookies.get('refreshToken');
-		const { data } = await axiosInterceptor.post<IAuthResponse>(
+		const { data } = await axiosClassic.post<IAuthResponse>(
 			getAuthUrl('login/access-token'),
 			{ refreshToken }
 		);
