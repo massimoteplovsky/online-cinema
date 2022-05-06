@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useAuth } from '@/hooks/useAuth';
 
-import { getAdminHomePath } from '@/configs/url.config';
+import { getAdminPath } from '@/configs/url.config';
 
 import MenuItem from '../menu/menu-item';
 
@@ -32,7 +32,7 @@ const AuthItems: FC = () => {
 				<MenuItem
 					item={{
 						icon: 'MdOutlineLock',
-						link: getAdminHomePath(),
+						link: getAdminPath(''),
 						title: 'Admin panel',
 					}}
 				/>
