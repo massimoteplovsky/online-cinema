@@ -1,4 +1,5 @@
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
 
@@ -10,11 +11,13 @@ import { MovieService } from '@/services/movie.service';
 
 import { toastrError } from '@/utils/toastr-error';
 
-import { getMoviesUrl } from '@/configs/api.config';
+import { getAdminPath } from '@/configs/url.config';
 
 export const useMovies = () => {
 	const [searchText, setSearchText] = useState<string>('');
 	const debouncedSearch = useDebounce(searchText, 500);
+
+	const { push } = useRouter();
 
 	const queryData = useQuery(
 		['Search movies', debouncedSearch],
@@ -24,7 +27,7 @@ export const useMovies = () => {
 				data.map(
 					(movie): ITableItem => ({
 						_id: movie._id,
-						editUrl: getMoviesUrl(`/edit/${movie._id}`),
+						editUrl: getAdminPath(`/movies/edit/${movie._id}`),
 						items: [
 							movie.title,
 							movie.genres.map(({ name }) => name).join(', '),
@@ -56,8 +59,18 @@ export const useMovies = () => {
 		setSearchText(e.target.value);
 	};
 
+	const handleClick = useCallback(() => {
+		push(getAdminPath('/movies/create'));
+	}, [push]);
+
 	return useMemo(
-		() => ({ searchText, ...queryData, handleSearch, deleteMovie }),
-		[queryData, searchText, deleteMovie]
+		() => ({
+			searchText,
+			...queryData,
+			handleSearch,
+			deleteMovie,
+			handleClick,
+		}),
+		[queryData, searchText, deleteMovie, handleClick]
 	);
 };

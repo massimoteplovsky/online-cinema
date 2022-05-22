@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 import AdminHeader from '@/components/ui/admin-table/admin-header/admin-header';
@@ -6,7 +7,10 @@ import Heading from '@/components/ui/heading/heading';
 
 import Meta from '@/utils/meta/meta';
 
+import { getAdminPath } from '@/configs/url.config';
+
 import AdminNavigation from '../../../ui/admin-navigation/admin-navigation';
+import s from '../admin.module.scss';
 
 import { useUsers } from './useUsers';
 
@@ -23,7 +27,13 @@ const UsersList = () => {
 	return (
 		<Meta title="Users">
 			<AdminNavigation />
-			<Heading title="Users" className="text-4xl" />
+			<div className={s.adminHeading}>
+				<Heading title="Users" className="text-4xl" />
+				<Link href={getAdminPath('/movies/create')}>
+					<a className={s.button}>Create</a>
+				</Link>
+			</div>
+
 			<AdminHeader searchText={searchText} handleSearch={handleSearch} />
 			<AdminTable
 				tableItems={usersList}

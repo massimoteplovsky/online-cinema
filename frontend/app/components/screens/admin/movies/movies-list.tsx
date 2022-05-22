@@ -17,13 +17,18 @@ const MoviesList: FC = () => {
 		handleSearch,
 		searchText,
 		deleteMovie,
+		handleClick,
 		data: usersList = [],
 	} = useMovies();
 	return (
 		<Meta title="Movies">
 			<AdminNavigation />
 			<Heading title="Movies" className="text-4xl" />
-			<AdminHeader searchText={searchText} handleSearch={handleSearch} />
+			<AdminHeader
+				searchText={searchText}
+				handleSearch={handleSearch}
+				onClick={handleClick}
+			/>
 			<AdminTable
 				tableItems={usersList}
 				isLoading={isLoading}
