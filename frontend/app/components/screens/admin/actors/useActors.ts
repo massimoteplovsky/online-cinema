@@ -1,4 +1,5 @@
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
 
@@ -10,11 +11,12 @@ import { ActorService } from '@/services/actor.service';
 
 import { toastrError } from '@/utils/toastr-error';
 
-import { getActorsUrl } from '@/configs/api.config';
+import { getAdminPath } from '@/configs/url.config';
 
 export const useActors = () => {
 	const [searchText, setSearchText] = useState<string>('');
 	const debouncedSearch = useDebounce(searchText, 500);
+	const { push } = useRouter();
 
 	const queryData = useQuery(
 		['Search actors', debouncedSearch],
@@ -24,7 +26,7 @@ export const useActors = () => {
 				data.map(
 					(actor): ITableItem => ({
 						_id: actor._id,
-						editUrl: getActorsUrl(`/edit/${actor._id}`),
+						editUrl: getAdminPath(`/actors/edit/${actor._id}`),
 						items: [actor.name, String(actor.countMovies)],
 					})
 				),
@@ -52,8 +54,18 @@ export const useActors = () => {
 		setSearchText(e.target.value);
 	};
 
+	const handleClick = useCallback(() => {
+		push(getAdminPath('/actors/create'));
+	}, [push]);
+
 	return useMemo(
-		() => ({ searchText, ...queryData, handleSearch, deleteActor }),
-		[queryData, searchText, deleteActor]
+		() => ({
+			searchText,
+			...queryData,
+			handleSearch,
+			deleteActor,
+			handleClick,
+		}),
+		[queryData, searchText, deleteActor, handleClick]
 	);
 };

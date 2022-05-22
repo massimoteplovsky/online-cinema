@@ -21,7 +21,7 @@ const Auth = () => {
 	const {
 		register: registerInput,
 		handleSubmit,
-		formState: { isValid, errors },
+		formState: { errors },
 		reset,
 	} = useForm<IAuth>({
 		mode: 'onChange',

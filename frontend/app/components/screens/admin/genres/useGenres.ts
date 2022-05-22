@@ -1,4 +1,5 @@
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { toastr } from 'react-redux-toastr';
 
@@ -10,11 +11,14 @@ import { GenreService } from '@/services/genre.service';
 
 import { toastrError } from '@/utils/toastr-error';
 
-import { getGenresUrl } from '@/configs/api.config';
+import { getAdminPath } from '@/configs/url.config';
+
+import { IGenreEdit } from '../edit/genres/genres-edit.interface';
 
 export const useGenres = () => {
 	const [searchText, setSearchText] = useState<string>('');
 	const debouncedSearch = useDebounce(searchText, 500);
+	const { push } = useRouter();
 
 	const queryData = useQuery(
 		['Search genres', debouncedSearch],
@@ -24,7 +28,7 @@ export const useGenres = () => {
 				data.map(
 					(genre): ITableItem => ({
 						_id: genre._id,
-						editUrl: getGenresUrl(`/edit/${genre._id}`),
+						editUrl: getAdminPath(`/genres/edit/${genre._id}`),
 						items: [genre.name, genre.slug],
 					})
 				),
@@ -52,8 +56,18 @@ export const useGenres = () => {
 		setSearchText(e.target.value);
 	};
 
+	const handleClick = useCallback(() => {
+		push(getAdminPath('/genres/create'));
+	}, [push]);
+
 	return useMemo(
-		() => ({ searchText, ...queryData, handleSearch, deleteGenre }),
-		[queryData, searchText, deleteGenre]
+		() => ({
+			searchText,
+			...queryData,
+			handleSearch,
+			deleteGenre,
+			handleClick,
+		}),
+		[queryData, searchText, deleteGenre, handleClick]
 	);
 };

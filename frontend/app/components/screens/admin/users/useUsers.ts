@@ -10,7 +10,7 @@ import { UserService } from '@/services/user.service';
 
 import { toastrError } from '@/utils/toastr-error';
 
-import { getUsersUrl } from '@/configs/api.config';
+import { getAdminPath } from '@/configs/url.config';
 
 export const useUsers = () => {
 	const [searchText, setSearchText] = useState<string>('');
@@ -24,7 +24,7 @@ export const useUsers = () => {
 				data.map(
 					(user): ITableItem => ({
 						_id: user._id,
-						editUrl: getUsersUrl(`/edit/${user._id}`),
+						editUrl: getAdminPath(`/users/edit/${user._id}`),
 						items: [
 							user.email,
 							new Date(user.createdAt).toLocaleDateString('ru'),
