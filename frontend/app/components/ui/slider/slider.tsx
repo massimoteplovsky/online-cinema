@@ -20,7 +20,7 @@ const Slider: FC<ISlider> = ({ slides, buttonTitle }) => {
 		handleArrowClick,
 		slideIn,
 	} = useSlider(slides.length);
-	console.log(isNextSlideExists, isPrevSlideExists);
+
 	return (
 		<div className={s.slider}>
 			<CSSTransition

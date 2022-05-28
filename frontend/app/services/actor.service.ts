@@ -15,6 +15,9 @@ export const ActorService = {
 	async getActorById(genreId: string) {
 		return await axios.get<IActorEdit>(getActorsUrl(genreId));
 	},
+	async getActorBySlug(slug: string) {
+		return await axiosClassic.get<IActor>(getActorsUrl(`by-slug/${slug}`));
+	},
 	async createActor(actorData: IActorEdit) {
 		return await axios.post<string>(getActorsUrl(''), actorData);
 	},

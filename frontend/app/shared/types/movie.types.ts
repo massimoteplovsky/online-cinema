@@ -31,7 +31,7 @@ export interface IMovie {
 	title: string;
 	parameters: IParameters;
 	genres: IGenre[];
-	actors: string[];
+	actors: IActor[];
 	countOpened: number;
 	description: string;
 	slug: string;

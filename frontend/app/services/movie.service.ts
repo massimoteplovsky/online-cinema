@@ -18,6 +18,22 @@ export const MovieService = {
 	async getPopularMovies() {
 		return await axiosClassic.get<IMovie[]>(getMoviesUrl('most-popular'));
 	},
+	async getMoviesByGenres(genreIds: string[]) {
+		const data = await axiosClassic.post<IMovie[]>(getMoviesUrl(`by-genres`), {
+			genreIds,
+		});
+		console.log(data.data);
+
+		return data;
+	},
+	async getMoviesByActor(actorId: string) {
+		return await axiosClassic.get<IMovie[]>(
+			getMoviesUrl(`by-actor/${actorId}`)
+		);
+	},
+	async getMovieBySlug(slug: string) {
+		return await axiosClassic.get<IMovie>(getMoviesUrl(`by-slug/${slug}`));
+	},
 	async createMovie(movieData: IMovieEdit) {
 		return await axios.post<string>(getMoviesUrl(''), movieData);
 	},
