@@ -1,3 +1,11 @@
 .navigation {
 	@apply py-layout;
 }
+
+.logo {
+	@apply flex items-center px-layout mb-10 text-white text-lg uppercase;
+
+	.text {
+		@apply ml-2;
+	}
+}

@@ -6,6 +6,7 @@ import MaterialIcon from '@/components/ui/material-icon';
 
 import { IMovie } from '@/shared/types/movie.types';
 
+import { getGenresUrl, getMoviesUrl } from '@/configs/api.config';
 import { getGenresPath, getMoviesPath } from '@/configs/url.config';
 
 import s from './movie-item.module.scss';
@@ -13,7 +14,7 @@ import s from './movie-item.module.scss';
 const MovieItem: FC<{ movie: IMovie }> = ({ movie }) => {
 	return (
 		<div className={s.item}>
-			<Link href={getMoviesPath(movie.slug)}>
+			<Link href={getMoviesUrl(movie.slug)}>
 				<a>
 					<Image
 						src={movie.poster}
@@ -29,7 +30,7 @@ const MovieItem: FC<{ movie: IMovie }> = ({ movie }) => {
 				<h3 className={s.title}>{movie.title}</h3>
 				<div className={s.genres}>
 					{movie.genres.map((genre, index, arr) => (
-						<Link key={genre._id} href={getGenresPath(genre.slug)}>
+						<Link key={genre._id} href={getGenresUrl(genre.slug)}>
 							<a>
 								{genre.name} {index !== arr.length - 1 ? ', ' : ''}
 							</a>
